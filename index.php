@@ -1,7 +1,5 @@
 <?php
-// index.php
 
-// --- الاتصال بقاعدة البيانات ---
 $db_host = 'localhost';
 $db_name = 'my_company';
 $db_user = 'root';
@@ -14,7 +12,6 @@ try {
     die("فشل الاتصال بقاعدة البيانات: " . $e->getMessage());
 }
 
-// --- جلب كل الموظفين من قاعدة البيانات ---
 $stmt = $pdo->query("SELECT * FROM employees ORDER BY id DESC");
 $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -33,7 +30,7 @@ session_start(); // ابدأ الجلسة لتتمكن من قراءة الرس�
 // تحقق مما إذا كانت هناك رسالة في الـ Session
 if (isset($_SESSION['message'])): 
 ?>
-    <!-- إذا كانت هناك رسالة، اعرضها بهذا التنسيق الجميل -->
+   
     <div class="alert">
         <?php 
             echo $_SESSION['message']; 
@@ -44,11 +41,10 @@ if (isset($_SESSION['message'])):
 <?php endif; ?>
     <div class="container">
         <h1>لوحة تحكم الموظفين</h1>
-        
-        <!-- هذا الزر ينقلك إلى صفحة إضافة موظف -->
+   
         <a href="add.php" class="btn btn-primary">إضافة موظف جديد</a>
 
-        <!-- جدول عرض الموظفين -->
+   
         <table class="employee-table">
             <thead>
                 <tr>
@@ -81,4 +77,5 @@ if (isset($_SESSION['message'])):
         
     </div>
 </body>
+
 </html>
