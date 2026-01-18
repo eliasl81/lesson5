@@ -1,7 +1,7 @@
 <?php
 // edit.php
 
-// --- الاتصال بقاعدة البيانات ---
+
 $db_host = 'localhost';
 $db_name = 'my_company';
 $db_user = 'root';
@@ -17,13 +17,13 @@ try {
 $employee = null;
 $id = $_GET['id'] ?? null;
 
-// التحقق من وجود ID
+
 if (!$id) {
     header("Location: index.php");
     exit();
 }
 
-// --- معالجة حفظ التعديلات (عندما يضغط المستخدم على زر الحفظ) ---
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -36,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$name, $email, $salary, $type, $extra_info, $id]);
 
-       // بعد التحديث، ضع رسالة نجاح في الـ Session وأعد التوجيه
-session_start(); // ابدأ الجلسة
+   
+session_start();  
 $_SESSION['message'] = "تم تعديل بيانات الموظف بنجاح!"; // ضع الرسالة
 header("Location: index.php");
 exit();
@@ -46,7 +46,7 @@ exit();
     }
 }
 
-// --- جلب بيانات الموظف الحالية لعرضها في النموذج ---
+
 try {
     $stmt = $pdo->prepare("SELECT * FROM employees WHERE id = ?");
     $stmt->execute([$id]);
@@ -73,7 +73,7 @@ try {
     <div class="container">
         <h1>تعديل بيانات: <?php echo htmlspecialchars($employee['name']); ?></h1>
 
-        <!-- النموذج يرسل البيانات إلى نفس الصفحة (edit.php) مع الـ ID -->
+       
         <form action="edit.php?id=<?php echo $employee['id']; ?>" method="POST">
             <div class="form-group">
                 <label for="name">الاسم الكامل:</label>
@@ -105,4 +105,5 @@ try {
         </form>
     </div>
 </body>
+
 </html>
