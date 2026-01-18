@@ -1,5 +1,5 @@
 <?php
-// add.php
+
 ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -12,7 +12,7 @@
     <div class="container">
         <h1>نموذج إضافة موظف جديد</h1>
 
-        <!-- هذا النموذج يرسل البيانات إلى ملف save.php عند الضغط على زر الحفظ -->
+       
         <form action="save.php" method="POST">
             <div class="form-group">
                 <label for="name">الاسم الكامل:</label>
@@ -44,4 +44,5 @@
         </form>
     </div>
 </body>
+
 </html>
